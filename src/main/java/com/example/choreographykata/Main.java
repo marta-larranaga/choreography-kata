@@ -3,11 +3,11 @@ package com.example.choreographykata;
 public class Main {
 
   public static void main(String[] args) {
-    MessageBus messageBus = new MessageBus();
-    InventoryService inventoryService = new InventoryService(6, messageBus);
-    TicketingService ticketingService = new TicketingService(messageBus);
-    //NotificationService notificationService = new NotificationService(messageBus);
-    BookingService bookingService = new BookingService(messageBus);
+    InventoryService inventoryService = new InventoryService(54);
+    TicketingService ticketingService = new TicketingService();
+    NotificationService notificationService = new NotificationService();
+    OrchestrationService orchestrationService = new OrchestrationService(inventoryService, ticketingService, notificationService);
+    BookingService bookingService = new BookingService(orchestrationService);
     int numberOfSeats = 7;
     bookingService.book(numberOfSeats);
   }
